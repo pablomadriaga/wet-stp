@@ -12,7 +12,6 @@ catch {
 }#Fin del Catch
 
 
-
 # Obtener todos los xml
 $dir_politicas = "$env:USERPROFILE\politicas\"
 $PolicyFiles = Get-ChildItem $dir_politicas -Filter *.xml
@@ -27,10 +26,11 @@ Foreach ($PolicyFile in $PolicyFiles) {
 	$xml = [xml](Get-Content $PolicyFilePath)
 
 	# Navegamos por el xml y se extrae el nombre
-	$PolicyName = $xml.PbmCapabilityProfile.Name.'#text'
+	$PolicyName = $xml.PbmCapabilityProfile.Name
 
 	# Navegamos por el xml y se extrae la descripcion
-	$PolicyDescription = $xml.PbmCapabilityProfile.Description.'#text'
+	$PolicyDescription = $xml.PbmCapabilityProfile.Description
 
     Write-Host "$PolicyName" -foregroundcolor green
     Import-SpbmStoragePolicy -Name $PolicyName -Description $PolicyDescription -FilePath $PolicyFilePath # -ErrorAction SilentlyContinue
+}
