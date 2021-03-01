@@ -1,4 +1,4 @@
-﻿$vc = Read-Host -Prompt "Incregre el Vcenter"
+$vc = Read-Host -Prompt "Incregre el Vcenter"
 
 
 #Conectarse al Vcenter
@@ -34,4 +34,3 @@ Foreach ($PolicyFile in $PolicyFiles) {
 
     Write-Host "$PolicyName" -foregroundcolor green
     Import-SpbmStoragePolicy -Name $PolicyName -Description $PolicyDescription -FilePath $PolicyFilePath # -ErrorAction SilentlyContinue
-}
